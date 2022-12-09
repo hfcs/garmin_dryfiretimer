@@ -53,7 +53,7 @@ class timer_logic {
         
     }
 
-    function getCountDown() {
-        return _countDown;
+    function getTimerText() {
+        return _countDown.toString();
     }
 }

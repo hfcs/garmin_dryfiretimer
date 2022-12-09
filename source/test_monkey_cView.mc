@@ -25,7 +25,7 @@ class test_monkey_cView extends WatchUi.View {
     // Update the view
     function onUpdate(dc as Dc) as Void {
         var timerLabel = View.findDrawableById("CountdownLabel") as WatchUi.Text;
-        timerLabel.setText(_timer_logic.getCountDown().toString());
+        timerLabel.setText(_timer_logic.getTimerText());
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
