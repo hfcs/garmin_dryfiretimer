@@ -66,6 +66,14 @@ class timer_logic {
     }
 
     function getTimerText() {
-        return _countDown.toString();
+        var second = _countDown / 1000;
+        var subsecond = (_countDown % 1000) / 10; // divide by ten to extract only 2 digits
+        var output = second.toString() + ".";
+        if (subsecond < 10) {
+            output = output + "0";
+        }
+        output = output + subsecond.toString();
+        return (output);
+        //return _countDown.toString();
     }
 }
