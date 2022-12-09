@@ -5,9 +5,11 @@ import Toybox.System;
 // this is a combined model and controller?
 
 class timer_logic {
+    const TIMER_REFRESH = 50;
 
     private var _countDown as Lang.Number = 0;
-    private var _myTimer = new Timer.Timer();
+    private var _countdownTimer = new Timer.Timer();
+    private var _countdownRefreshTimer = new Timer.Timer();
 
     // State machine for timer,
 
@@ -23,9 +25,17 @@ class timer_logic {
 
     function countdownCallback() as Void {
         _timerState = START;
+        _countDown = 0;
+        _countdownRefreshTimer.stop();
+        WatchUi.requestUpdate();
         System.println("state = start ");
         System.println("timer beep");
         Attention.playTone(Attention.TONE_LOUD_BEEP);
+    }
+
+    function countdownRefreshCallback() as Void {
+        _countDown -= TIMER_REFRESH;
+        WatchUi.requestUpdate();
     }
 
     function handleStart() {
@@ -35,13 +45,15 @@ class timer_logic {
             _countDown = (Math.rand() % 3000) + 1000; // 1-4 second delays
             WatchUi.requestUpdate();
             System.println("timer delay " + _countDown);
-            _myTimer.start(method(:countdownCallback), _countDown, false);
+            _countdownTimer.start(method(:countdownCallback), _countDown, false);
+            _countdownRefreshTimer.start(method(:countdownRefreshCallback), TIMER_REFRESH, true);
         }
     }
 
     function handleReset() {
         if (_timerState == COUNTDOWN) {
-            _myTimer.stop();
+            _countdownTimer.stop();
+            _countdownRefreshTimer.stop();
             _timerState = RESET;
             System.println("state = reset ");
             _countDown = 0;
