@@ -1,0 +1,10 @@
+<strings>
+    <string id="AppName">test_monkey_c</string>
+
+    <string id="prompt">Beep delay</string>
+
+    <string id="countdown">Countown</string>
+
+    <string id="menu_label_1">foo</string>
+    <string id="menu_label_2">bar</string>
+</strings>
