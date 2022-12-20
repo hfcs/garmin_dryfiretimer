@@ -38,11 +38,16 @@ class timer_logic {
         WatchUi.requestUpdate();
     }
 
+    protected function startupDelay () as Lang.Number {
+        // random mode
+        return (Math.rand() % 3000) + 1000; // 1-4 second delays
+    }
+
     function handleStart() {
         if (_timerState == RESET || _timerState == START_AND_RESET) {
             _timerState = COUNTDOWN;
             System.println("state = countdown ");
-            _countDown = (Math.rand() % 3000) + 1000; // 1-4 second delays
+            _countDown = startupDelay();
             WatchUi.requestUpdate();
             System.println("timer delay " + _countDown);
             _countdownTimer.start(method(:countdownCallback), _countDown, false);
@@ -66,14 +71,19 @@ class timer_logic {
     }
 
     function getTimerText() {
-        var second = _countDown / 1000;
-        var subsecond = (_countDown % 1000) / 10; // divide by ten to extract only 2 digits
-        var output = second.toString() + ".";
-        if (subsecond < 10) {
-            output = output + "0";
+        if (_timerState == COUNTDOWN) {
+            var second = _countDown / 1000;
+            var subsecond = (_countDown % 1000) / 10; // divide by ten to extract only 2 digits
+            var output = second.toString() + ".";
+            if (subsecond < 10) {
+                output = output + "0";
+            }
+            output = output + subsecond.toString();
+            return (output);
+            //return _countDown.toString();
+        } else {
+            return "0.00";
         }
-        output = output + subsecond.toString();
-        return (output);
-        //return _countDown.toString();
+
     }
 }
