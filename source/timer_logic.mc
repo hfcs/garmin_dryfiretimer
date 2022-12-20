@@ -5,7 +5,7 @@ import Toybox.System;
 // this is a combined model and controller?
 
 class timer_logic {
-    const TIMER_REFRESH = 50;
+    const TIMER_REFRESH = 67;
 
     private var _countDown as Lang.Number = 0;
     private var _countdownTimer = new Timer.Timer();
