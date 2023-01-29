@@ -93,6 +93,7 @@ class timer_logic {
             WatchUi.requestUpdate();
         } else if (_timerState == START) {
             _timerState = START_AND_RESET;
+            WatchUi.requestUpdate();
             System.println("state = start and reset ");
         }
         
@@ -112,6 +113,22 @@ class timer_logic {
             return "0.00";
         }
 
+    }
+
+    function getStatusPromptText() {
+        if (_timerState == RESET) {
+            return $.Rez.Strings.TimerStatusReady;
+        } else if (_timerState == COUNTDOWN) {
+            return $.Rez.Strings.TimerStatusCountdown;
+        } else if (_timerState == START) {
+            return $.Rez.Strings.TimerStatusNeedReset;
+        } else if (_timerState == PAR_COUNTDOWN) {
+            return $.Rez.Strings.TimerStatusParCountdown;
+        } else if (_timerState == START_AND_RESET) {
+            return $.Rez.Strings.TimerStatusReady;
+        } else {
+            return $.Rez.Strings.InternalError;
+        }
     }
 
     function setParTime(parMilliSecond as Lang.Number) as Void {

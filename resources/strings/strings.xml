@@ -1,11 +1,21 @@
 <strings>
-    <string id="AppName">test_monkey_c</string>
+    <string id="AppName">Dry Fire Timer</string>
 
-    <string id="prompt">Beep delay</string>
+    <string id="StatusPrompt"> </string>
 
-    <string id="countdown">Countown</string>
+    <string id="Countdown"> </string>
+
+    <string id="TimerStatusReady">Ready. Hit "Start"</string>
+
+    <string id="TimerStatusCountdown">Timer Countown</string>
+
+    <string id="TimerStatusParCountdown">Par Time</string>
+
+    <string id="TimerStatusNeedReset">Hit "Down"\n to Reset</string>
 
     <string id="ParTimePickerTitle">Par Time</string>
 
     <string id="ParTimeDotSeparator">.</string>
+
+    <string id="InternalError">INTERNAL ERROR</string>
 </strings>
