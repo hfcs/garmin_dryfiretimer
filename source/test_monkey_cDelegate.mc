@@ -11,7 +11,7 @@ class DryFireTimerDelegate extends WatchUi.BehaviorDelegate {
     }
 
     function onMenu() as Boolean {
-        WatchUi.pushView(new Rez.Menus.MainMenu(), new test_monkey_cMenuDelegate(), WatchUi.SLIDE_UP);
+        WatchUi.pushView(new $.ParTimePicker(), new $.ParTimePickerDelegate(), WatchUi.SLIDE_RIGHT);
         return true;
     }
 

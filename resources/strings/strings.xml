@@ -5,6 +5,7 @@
 
     <string id="countdown">Countown</string>
 
-    <string id="menu_label_1">foo</string>
-    <string id="menu_label_2">bar</string>
+    <string id="ParTimePickerTitle">Par Time</string>
+
+    <string id="ParTimeDotSeparator">.</string>
 </strings>

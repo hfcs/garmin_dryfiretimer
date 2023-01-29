@@ -1,4 +1,5 @@
 
+import Toybox.Application.Storage;
 import Toybox.Lang;
 import Toybox.System;
 
@@ -17,11 +18,22 @@ class timer_logic {
         RESET,
         COUNTDOWN,
         START,
+        PAR_COUNTDOWN,
         START_AND_RESET
         // PAR is not a registered state
     }
    
     private var _timerState as timerStateEnum = RESET;
+
+    function parTimeCallback() as Void {
+        _timerState = START;
+        _countDown = 0;
+        _countdownRefreshTimer.stop();
+        WatchUi.requestUpdate();
+        System.println("state = par ");
+        System.println("timer beep");
+        Attention.playTone(Attention.TONE_LOUD_BEEP);
+    }
 
     function countdownCallback() as Void {
         _timerState = START;
@@ -31,6 +43,10 @@ class timer_logic {
         System.println("state = start ");
         System.println("timer beep");
         Attention.playTone(Attention.TONE_LOUD_BEEP);
+        if (getParTime() > 0) {
+            // zero means no par time
+            handleParTime();
+        }
     }
 
     function countdownRefreshCallback() as Void {
@@ -55,6 +71,18 @@ class timer_logic {
         }
     }
 
+    function handleParTime() {
+        if (_timerState == START) {
+            _timerState = PAR_COUNTDOWN;
+            System.println("state = par countdown ");
+            _countDown = getParTime();
+            WatchUi.requestUpdate();
+            System.println("timer delay " + _countDown);
+            _countdownTimer.start(method(:parTimeCallback), _countDown, false);
+            _countdownRefreshTimer.start(method(:countdownRefreshCallback), TIMER_REFRESH, true);
+        }
+    }
+
     function handleReset() {
         if (_timerState == COUNTDOWN) {
             _countdownTimer.stop();
@@ -71,7 +99,7 @@ class timer_logic {
     }
 
     function getTimerText() {
-        if (_timerState == COUNTDOWN) {
+        if (_timerState == COUNTDOWN || _timerState == PAR_COUNTDOWN) {
             var second = _countDown / 1000;
             var subsecond = (_countDown % 1000) / 10; // divide by ten to extract only 2 digits
             var output = second.toString() + ".";
@@ -80,10 +108,24 @@ class timer_logic {
             }
             output = output + subsecond.toString();
             return (output);
-            //return _countDown.toString();
         } else {
             return "0.00";
         }
 
     }
+
+    function setParTime(parMilliSecond as Lang.Number) as Void {
+        //System.println("set par time " + parMilliSecond);
+        Storage.setValue("parMilliSecond", parMilliSecond);
+    }
+
+    function getParTime() as Lang.Number {
+        if (Storage.getValue("parMilliSecond") == null) { 
+            // default to zero (no par time) on first time this app is run
+            var parMilliSecond = 0;
+            Storage.setValue("parMilliSecond", parMilliSecond);
+        }
+        return Storage.getValue("parMilliSecond");
+    }
+    
 }
