@@ -1,7 +1,7 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
 
-class test_monkey_cView extends WatchUi.View {
+class DryFireTimerView extends WatchUi.View {
     
     private var _timer_logic as timer_logic;
 

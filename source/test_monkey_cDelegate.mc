@@ -1,7 +1,7 @@
 import Toybox.Lang;
 import Toybox.WatchUi;
 
-class test_monkey_cDelegate extends WatchUi.BehaviorDelegate {
+class DryFireTimerDelegate extends WatchUi.BehaviorDelegate {
 
     private var _timer_logic as timer_logic;
 
@@ -30,8 +30,7 @@ class test_monkey_cDelegate extends WatchUi.BehaviorDelegate {
             } else if (key == KEY_DOWN) {
                 _timer_logic.handleReset();
                 return false;
-            } else
-            {
+            } else {
                 return true;
             }
         }
