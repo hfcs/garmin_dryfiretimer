@@ -4,7 +4,6 @@ import Toybox.Lang;
 const SECOND_FACTORY_INDEX = 0;
 const SUB_SECOND_FACTORY_INDEX = 1;
 const MAX_PAR_SECOND = 30;
-const PAR_ZERO_POINT_FIVE_SECOND = 5;
 
 class ParTimePicker extends WatchUi.Picker {
     public function initialize() {
@@ -13,7 +12,7 @@ class ParTimePicker extends WatchUi.Picker {
 
         var factories = new Array<PickerFactory or Text>[SUB_SECOND_FACTORY_INDEX + 1];
         factories[SECOND_FACTORY_INDEX] = new $.NumberFactory(0, MAX_PAR_SECOND, 1, {});
-        factories[SUB_SECOND_FACTORY_INDEX] = new $.NumberFactory(0, PAR_ZERO_POINT_FIVE_SECOND, PAR_ZERO_POINT_FIVE_SECOND, {:subDecimal=>true});
+        factories[SUB_SECOND_FACTORY_INDEX] = new $.NumberFactory(0, 9, 1, {:subDecimal=>true});
 
         var defaults = new Array<Number>[factories.size()];
         var defaultParTime = $.timer_logic.getParTime();
@@ -22,7 +21,7 @@ class ParTimePicker extends WatchUi.Picker {
             defaults[SECOND_FACTORY_INDEX] = (factories[SECOND_FACTORY_INDEX] as NumberFactory).getIndex(parSecond);
             var parSubSecond = 0;
             if ((defaultParTime % 1000) != 0) {
-                parSubSecond = PAR_ZERO_POINT_FIVE_SECOND;
+                parSubSecond = (defaultParTime % 1000) / 100;
             }
             defaults[SUB_SECOND_FACTORY_INDEX] = (factories[SUB_SECOND_FACTORY_INDEX] as NumberFactory).getIndex(parSubSecond);
         }
