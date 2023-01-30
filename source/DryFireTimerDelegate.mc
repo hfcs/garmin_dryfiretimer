@@ -10,8 +10,17 @@ class DryFireTimerDelegate extends WatchUi.BehaviorDelegate {
         _timer_logic = logic;
     }
 
-    function onMenu() as Boolean {
+    protected function launchParTimePicker() as Void {
         WatchUi.pushView(new $.ParTimePicker(), new $.ParTimePickerDelegate(), WatchUi.SLIDE_RIGHT);
+    }
+
+    function onPreviousPage() as Boolean { // easier to trigger by "next" button, Menu action will keep incrementing
+        launchParTimePicker();
+        return true;
+    }
+
+    function onMenu() as Boolean {
+        launchParTimePicker();
         return true;
     }
 
