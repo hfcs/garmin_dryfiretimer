@@ -15,6 +15,7 @@ class NumberFactory extends WatchUi.PickerFactory {
     private var _increment as Number;
     private var _formatString as String;
     private var _font as FontDefinition;
+    private var _subDecimal as Boolean;
 
     //! Constructor
     //! @param start Number to start with
@@ -25,7 +26,8 @@ class NumberFactory extends WatchUi.PickerFactory {
     //! @option options :format The number format to display
     public function initialize(start as Number, stop as Number, increment as Number, options as {
         :font as FontDefinition,
-        :format as String
+        :format as String,
+        :subDecimal as Boolean
     }) {
         PickerFactory.initialize();
 
@@ -46,6 +48,13 @@ class NumberFactory extends WatchUi.PickerFactory {
         } else {
             _font = Graphics.FONT_NUMBER_HOT;
         }
+
+        var subDecimal = options.get(:subDecimal);
+        if (subDecimal != null) {
+            _subDecimal = subDecimal;
+        } else {
+            _subDecimal = false;
+        }
     }
 
     //! Get the index of a number item
@@ -64,6 +73,9 @@ class NumberFactory extends WatchUi.PickerFactory {
         var text = "No item";
         if (value instanceof Number) {
             text = value.format(_formatString);
+        }
+        if (_subDecimal) {
+            text = "." + text;
         }
         return new WatchUi.Text({:text=>text, :color=>Graphics.COLOR_WHITE, :font=>_font,
             :locX=>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>WatchUi.LAYOUT_VALIGN_CENTER});
