@@ -11,19 +11,19 @@ class ParTimePicker extends WatchUi.Picker {
             :locY=>WatchUi.LAYOUT_VALIGN_BOTTOM, :color=>Graphics.COLOR_WHITE});
 
         var factories = new Array<PickerFactory or Text>[SUB_SECOND_FACTORY_INDEX + 1];
-        factories[SECOND_FACTORY_INDEX] = new $.NumberFactory(0, MAX_PAR_SECOND, 1, {});
-        factories[SUB_SECOND_FACTORY_INDEX] = new $.NumberFactory(0, 9, 1, {:subDecimal=>true});
+        factories[SECOND_FACTORY_INDEX] = new $.ParTimePickerDigitFactory(0, MAX_PAR_SECOND, 1, {});
+        factories[SUB_SECOND_FACTORY_INDEX] = new $.ParTimePickerDigitFactory(0, 9, 1, {:subDecimal=>true});
 
         var defaults = new Array<Number>[factories.size()];
         var defaultParTime = $.timer_logic.getParTime();
         if (defaultParTime != null) {
             var parSecond = defaultParTime/1000;
-            defaults[SECOND_FACTORY_INDEX] = (factories[SECOND_FACTORY_INDEX] as NumberFactory).getIndex(parSecond);
+            defaults[SECOND_FACTORY_INDEX] = (factories[SECOND_FACTORY_INDEX] as ParTimePickerDigitFactory).getIndex(parSecond);
             var parSubSecond = 0;
             if ((defaultParTime % 1000) != 0) {
                 parSubSecond = (defaultParTime % 1000) / 100;
             }
-            defaults[SUB_SECOND_FACTORY_INDEX] = (factories[SUB_SECOND_FACTORY_INDEX] as NumberFactory).getIndex(parSubSecond);
+            defaults[SUB_SECOND_FACTORY_INDEX] = (factories[SUB_SECOND_FACTORY_INDEX] as ParTimePickerDigitFactory).getIndex(parSubSecond);
         }
         
         //var nextArrow = new WatchUi.Bitmap({:rezId=>$.Rez.Drawables.nextArrow, :locX=>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>WatchUi.LAYOUT_VALIGN_CENTER});
