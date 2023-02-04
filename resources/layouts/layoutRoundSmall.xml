@@ -1,5 +1,5 @@
 <layout id="MainLayoutSmallRound">
     <!-- Instinct 2 round screen, need a lot of room for two rows, but it is kind of square so text can be at y=10 without getting edges chopped -->
-    <label id="StatusPromptLabel" x="center" y="10" text="@Strings.StatusPrompt" color="Graphics.COLOR_WHITE" font="Gfx.FONT_SYSTEM_SMALL" justification="Graphics.TEXT_JUSTIFY_CENTER" />
+    <label id="StatusPromptLabel" x="center" y="10" text="@Strings.StatusPrompt" color="Graphics.COLOR_WHITE" font="Gfx.FONT_SYSTEM_TINY" justification="Graphics.TEXT_JUSTIFY_CENTER" />
     <label id="CountdownLabel" x="center" y="center" text="@Strings.Countdown" color="Graphics.COLOR_WHITE" font="Gfx.FONT_SYSTEM_NUMBER_THAI_HOT" justification="Graphics.TEXT_JUSTIFY_CENTER" />
 </layout>
