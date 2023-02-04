@@ -12,7 +12,6 @@ class DryFireTimerView extends WatchUi.View {
     // Load your resources here
     function onLayout(dc as Dc) as Void {
         var deviceSettings = System.getDeviceSettings();
-        System.println("height=" + deviceSettings.screenHeight);
         if (deviceSettings.screenHeight > 230) {
             // Regular Fenix 7s/Forerunner 955 got a 240 pixels or taller round screen
             setLayout(Rez.Layouts.MainLayoutLargeRound(dc));

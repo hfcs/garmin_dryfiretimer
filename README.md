@@ -1,14 +1,17 @@
 # Dry Fire Timer
 
-This is a dry fire timer for Garmin, tested on Fenix 7. Supporting random delay of 1-4 seconds per [IPSC rule 8.3.3](https://www.ipsc.org/pdf/RulesAir.pdf), also supporting a 30 seconds par time.
+This is a dry fire timer for Garmin. Supporting random delay of 1-4 seconds per [IPSC rule 8.3.3](https://www.ipsc.org/pdf/RulesAir.pdf), also supporting a 30 seconds par time.
 
-## Firearm safety
+## Firearm Safety
 
-Even for dry fire, always make sure you remove ammo from your weapon and area around your dry fire training. Plus observe __Four Rules of Firearm Safety__.
+Even for dry fire, always make sure you remove ammo from your weapon and area around your dry fire training. Plus always observe __Four Rules of Firearm Safety__.
 1. Always treat every firearm as though it is loaded.                                           
 2. Always keep the muzzle pointed in a safe direction.
 3. Keep your finger outside the trigger guard until ready to shoot.
 4. Always be sure of your target and what is in front of it and behind it.
+
+## Supoorted Devices
+[System 4 or above devices like Forerunner 55, Fenix 5 or above](manifest.xml), tested on simulator.
 
 ## Building & Running
 1. Check out this project
