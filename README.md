@@ -18,3 +18,7 @@ Even for dry fire, always make sure you remove ammo from your weapon and area ar
 ## Deploying
 1. Go to your project
 2. Copy your bin/garmin_dryfiretimer.prg to your watch's GARMIN/APPS folder
+
+## Sample Screens
+![Timer main screen](readme_pic/mainscreen.png)
+![Par time picker](readme_pic/partime.png)
