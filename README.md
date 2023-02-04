@@ -1,6 +1,6 @@
-# Dry Fire Timer
+# Dry Fire Timer For Garmin Watches
 
-This is a dry fire timer for Garmin. Supporting random delay of 1-4 seconds per [IPSC rule 8.3.3](https://www.ipsc.org/pdf/RulesAir.pdf), also supporting a 30 seconds par time.
+This is a dry fire timer for Garmin watches. Supporting random delay of 1-4 seconds per [IPSC rule 8.3.3](https://www.ipsc.org/pdf/RulesAir.pdf), also supporting a 30 seconds par time.
 
 ## Firearm Safety
 
@@ -16,7 +16,8 @@ Even for dry fire, always make sure you remove ammo from your weapon and area ar
 ## Building & Running
 1. Check out this project
 2. On Visual Studio Code, Command Palette (Ctrl+Shift+P on Windows/Unix, Cmd+Shift+P on Mac), type "Monkey C: Build Current Project"
-3. On Visual Studio Code, "Run" Menu => "Run Without Debugging"
+3. If asked, select the target device you intend to deploy
+4. On Visual Studio Code, "Run" Menu => "Run Without Debugging"
 
 ## Deploying
 1. Go to your project
