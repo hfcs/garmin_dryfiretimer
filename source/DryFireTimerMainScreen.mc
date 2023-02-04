@@ -4,12 +4,12 @@ import Toybox.WatchUi;
 
 class DryFireTimerView extends WatchUi.View {
     
-    private var _timer_logic as timer_logic;
+    private var _DryFireTimerLogic as DryFireTimerLogic;
 
 
-    function initialize(timer_logic as timer_logic) {
+    function initialize(timerLogic as DryFireTimerLogic) {
         View.initialize();
-        _timer_logic = timer_logic;
+        _DryFireTimerLogic = timerLogic;
     }
 
     // Load your resources here
@@ -26,9 +26,9 @@ class DryFireTimerView extends WatchUi.View {
     // Update the view
     function onUpdate(dc as Dc) as Void {
         var statusPromptLable = View.findDrawableById("StatusPromptLabel") as WatchUi.Text;
-        statusPromptLable.setText(_timer_logic.getStatusPromptText());
+        statusPromptLable.setText(_DryFireTimerLogic.getStatusPromptText());
         var timerLabel = View.findDrawableById("CountdownLabel") as WatchUi.Text;
-        timerLabel.setText(_timer_logic.getTimerText());
+        timerLabel.setText(_DryFireTimerLogic.getTimerText());
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
@@ -43,11 +43,11 @@ class DryFireTimerView extends WatchUi.View {
 
 class DryFireTimerDelegate extends WatchUi.BehaviorDelegate {
 
-    private var _timer_logic as timer_logic;
+    private var _DryFireTimerLogic as DryFireTimerLogic;
 
-    function initialize(logic as timer_logic) {
+    function initialize(timerLogic as DryFireTimerLogic) {
         BehaviorDelegate.initialize();
-        _timer_logic = logic;
+        _DryFireTimerLogic = timerLogic;
     }
 
     protected function launchParTimePicker() as Void {
@@ -73,10 +73,10 @@ class DryFireTimerDelegate extends WatchUi.BehaviorDelegate {
         }            
         else {
             if (key == KEY_ENTER) {
-                _timer_logic.handleStart();
+                _DryFireTimerLogic.handleStart();
                 return false;
             } else if (key == KEY_DOWN) {
-                _timer_logic.handleReset();
+                _DryFireTimerLogic.handleReset();
                 return false;
             } else {
                 return true;

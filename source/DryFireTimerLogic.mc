@@ -5,7 +5,7 @@ import Toybox.System;
 
 // this is a combined model and controller?
 
-class timer_logic {
+class DryFireTimerLogic {
     const TIMER_REFRESH = 67;
 
     private var _countDown as Lang.Number = 0;
