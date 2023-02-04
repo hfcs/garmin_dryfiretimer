@@ -38,8 +38,6 @@ class DryFireTimerLogic {
         _countDown = 0;
         _countdownRefreshTimer.stop();
         WatchUi.requestUpdate();
-        System.println("state = par ");
-        System.println("timer beep");
         Attention.playTone(Attention.TONE_LOUD_BEEP);
     }
 
@@ -48,8 +46,6 @@ class DryFireTimerLogic {
         _countDown = 0;
         _countdownRefreshTimer.stop();
         WatchUi.requestUpdate();
-        System.println("state = start ");
-        System.println("timer beep");
         Attention.playTone(Attention.TONE_LOUD_BEEP);
         if (getParTime() > 0) {
             // zero means no par time
@@ -70,10 +66,8 @@ class DryFireTimerLogic {
     function handleStart() {
         if (_timerState == RESET || _timerState == START_AND_RESET) {
             _timerState = COUNTDOWN;
-            System.println("state = countdown ");
             _countDown = startupDelay();
             WatchUi.requestUpdate();
-            System.println("timer delay " + _countDown);
             _countdownTimer.start(method(:countdownCallback), _countDown, false);
             _countdownRefreshTimer.start(method(:countdownRefreshCallback), TIMER_REFRESH, true);
         }
@@ -82,10 +76,8 @@ class DryFireTimerLogic {
     function handleParTime() {
         if (_timerState == START) {
             _timerState = PAR_COUNTDOWN;
-            System.println("state = par countdown ");
             _countDown = getParTime();
             WatchUi.requestUpdate();
-            System.println("timer delay " + _countDown);
             _countdownTimer.start(method(:parTimeCallback), _countDown, false);
             _countdownRefreshTimer.start(method(:countdownRefreshCallback), TIMER_REFRESH, true);
         }
@@ -96,13 +88,11 @@ class DryFireTimerLogic {
             _countdownTimer.stop();
             _countdownRefreshTimer.stop();
             _timerState = RESET;
-            System.println("state = reset ");
             _countDown = 0;
             WatchUi.requestUpdate();
         } else if (_timerState == START) {
             _timerState = START_AND_RESET;
             WatchUi.requestUpdate();
-            System.println("state = start and reset ");
         }
         
     }
@@ -140,7 +130,6 @@ class DryFireTimerLogic {
     }
 
     function setParTime(parMilliSecond as Lang.Number) as Void {
-        //System.println("set par time " + parMilliSecond);
         Storage.setValue("parMilliSecond", parMilliSecond);
     }
 

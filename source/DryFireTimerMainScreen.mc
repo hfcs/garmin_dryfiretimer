@@ -59,8 +59,6 @@ class DryFireTimerDelegate extends WatchUi.BehaviorDelegate {
 
     function onKey(keyEvent) {
         var key = keyEvent.getKey() as Toybox.Lang.Object;
-        System.println(key);  // e.g. KEY_MENU = 7
-        System.println(keyEvent.getType() as Toybox.Lang.Object); // e.g. PRESS_TYPE_DOWN = 0
         if (key == KEY_ESC) {
             return false;
         }            
