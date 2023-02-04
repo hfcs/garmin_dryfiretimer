@@ -1,5 +1,6 @@
 import Toybox.Graphics;
 import Toybox.Lang;
+import Toybox.System;
 import Toybox.WatchUi;
 
 class DryFireTimerView extends WatchUi.View {
@@ -10,7 +11,19 @@ class DryFireTimerView extends WatchUi.View {
 
     // Load your resources here
     function onLayout(dc as Dc) as Void {
-        setLayout(Rez.Layouts.MainLayout(dc));
+        var deviceSettings = System.getDeviceSettings();
+        System.println("height=" + deviceSettings.screenHeight);
+        if (deviceSettings.screenHeight > 230) {
+            // Regular Fenix 7s/Forerunner 955 got a 240 pixels or taller round screen
+            setLayout(Rez.Layouts.MainLayoutLargeRound(dc));
+        } else if (deviceSettings.screenHeight > 200) {
+            // Forerunner 55 got a ~200 pixel round screen
+            setLayout(Rez.Layouts.MainLayoutMediumRound(dc));
+        } else {
+            // Instinct 2 got a < 180 pixel screen
+            setLayout(Rez.Layouts.MainLayoutSmallRound(dc));
+        }
+        
     }
 
     // Called when this View is brought to the foreground. Restore
