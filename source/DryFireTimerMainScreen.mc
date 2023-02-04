@@ -34,7 +34,7 @@ class DryFireTimerView extends WatchUi.View {
     // Update the view
     function onUpdate(dc as Dc) as Void {
         var statusPromptLabel = View.findDrawableById("StatusPromptLabel") as WatchUi.Text;
-        statusPromptLabel.setText($.DryFireTimerLogic.getInstance().getStatusPromptText());
+        statusPromptLabel.setText($.DryFireTimerLogic.getInstance().getStatusPromptSymbol());
         var timerLabel = View.findDrawableById("CountdownLabel") as WatchUi.Text;
         timerLabel.setText($.DryFireTimerLogic.getInstance().getTimerText());
         var parStatusLabel = View.findDrawableById("ParStatusLabel") as WatchUi.Text;
@@ -71,7 +71,7 @@ class DryFireTimerDelegate extends WatchUi.BehaviorDelegate {
         return true;
     }
 
-    function onKey(keyEvent) {
+    function onKey(keyEvent) as Boolean {
         var key = keyEvent.getKey() as Toybox.Lang.Object;
         if (key == KEY_ESC) {
             return false;

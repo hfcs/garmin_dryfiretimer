@@ -58,12 +58,12 @@ class DryFireTimerLogic {
         WatchUi.requestUpdate();
     }
 
-    protected function startupDelay () as Lang.Number {
+    protected function startupDelay () as Number {
         // random mode
         return (Math.rand() % 3000) + 1000; // 1-4 second delays
     }
 
-    function handleStart() {
+    function handleStart() as Void {
         if (_timerState == RESET || _timerState == START_AND_RESET) {
             _timerState = COUNTDOWN;
             _countDown = startupDelay();
@@ -73,7 +73,7 @@ class DryFireTimerLogic {
         }
     }
 
-    function handleParTime() {
+    function handleParTime() as Void {
         if (_timerState == START) {
             _timerState = PAR_COUNTDOWN;
             _countDown = getParTime();
@@ -83,7 +83,7 @@ class DryFireTimerLogic {
         }
     }
 
-    function handleReset() {
+    function handleReset() as Void {
         if (_timerState == COUNTDOWN) {
             _countdownTimer.stop();
             _countdownRefreshTimer.stop();
@@ -97,7 +97,7 @@ class DryFireTimerLogic {
         
     }
 
-    function getTimerText() {
+    function getTimerText() as String {
         if (_timerState == COUNTDOWN || _timerState == PAR_COUNTDOWN) {
             var second = _countDown / 1000;
             var subsecond = (_countDown % 1000) / 10; // divide by ten to extract only 2 digits
@@ -113,7 +113,7 @@ class DryFireTimerLogic {
 
     }
 
-    function getStatusPromptText() {
+    function getStatusPromptSymbol() as Symbol {
         if (_timerState == RESET) {
             return $.Rez.Strings.TimerStatusReady;
         } else if (_timerState == COUNTDOWN) {
@@ -129,11 +129,11 @@ class DryFireTimerLogic {
         }
     }
 
-    function setParTime(parMilliSecond as Lang.Number) as Void {
+    function setParTime(parMilliSecond as Number) as Void {
         Storage.setValue("parMilliSecond", parMilliSecond);
     }
 
-    function getParTime() as Lang.Number {
+    function getParTime() as Number {
         if (Storage.getValue("parMilliSecond") == null) { 
             // default to zero (no par time) on first time this app is run
             var parMilliSecond = 0;
@@ -142,7 +142,7 @@ class DryFireTimerLogic {
         return Storage.getValue("parMilliSecond");
     }
 
-    function getParStatusText() as Lang.String {
+    function getParStatusText() as String {
         var parTimeMilliSecond = getParTime();
         var parStatusText = "";
         if (parTimeMilliSecond > 0) {
