@@ -33,10 +33,12 @@ class DryFireTimerView extends WatchUi.View {
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
-        var statusPromptLable = View.findDrawableById("StatusPromptLabel") as WatchUi.Text;
-        statusPromptLable.setText($.DryFireTimerLogic.getInstance().getStatusPromptText());
+        var statusPromptLabel = View.findDrawableById("StatusPromptLabel") as WatchUi.Text;
+        statusPromptLabel.setText($.DryFireTimerLogic.getInstance().getStatusPromptText());
         var timerLabel = View.findDrawableById("CountdownLabel") as WatchUi.Text;
         timerLabel.setText($.DryFireTimerLogic.getInstance().getTimerText());
+        var parStatusLabel = View.findDrawableById("ParStatusLabel") as WatchUi.Text;
+        parStatusLabel.setText($.DryFireTimerLogic.getInstance().getParStatusText());
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }

@@ -2,4 +2,5 @@
     <!-- Regular Fenix 7s/Forerunner 955 got a 240 pixels or taller round screen, can use 30 pixels to avoid prompt cutting off -->
     <label id="StatusPromptLabel" x="center" y="30" text="@Strings.StatusPrompt" color="Graphics.COLOR_WHITE" font="Gfx.FONT_SYSTEM_SMALL" justification="Graphics.TEXT_JUSTIFY_CENTER" />
     <label id="CountdownLabel" x="center" y="center" text="@Strings.Countdown" color="Graphics.COLOR_WHITE" font="Gfx.FONT_SYSTEM_NUMBER_THAI_HOT" justification="Graphics.TEXT_JUSTIFY_CENTER" />
+    <label id="ParStatusLabel" x="center" y="180" text="@Strings.Countdown" color="Graphics.COLOR_WHITE" font="Gfx.FONT_SYSTEM_TINY" justification="Graphics.TEXT_JUSTIFY_CENTER" />
 </layout>

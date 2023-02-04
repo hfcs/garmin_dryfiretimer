@@ -141,5 +141,15 @@ class DryFireTimerLogic {
         }
         return Storage.getValue("parMilliSecond");
     }
+
+    function getParStatusText() as Lang.String {
+        var parTimeMilliSecond = getParTime();
+        var parStatusText = "";
+        if (parTimeMilliSecond > 0) {
+            parStatusText = "Par Time: ";
+            parStatusText = parStatusText + parTimeMilliSecond / 1000 + "." + (parTimeMilliSecond % 1000) / 100;
+        }
+        return parStatusText;
+    }
     
 }
