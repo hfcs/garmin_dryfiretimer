@@ -3,13 +3,9 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 
 class DryFireTimerView extends WatchUi.View {
-    
-    private var _DryFireTimerLogic as DryFireTimerLogic;
 
-
-    function initialize(timerLogic as DryFireTimerLogic) {
+    function initialize() {
         View.initialize();
-        _DryFireTimerLogic = timerLogic;
     }
 
     // Load your resources here
@@ -26,9 +22,9 @@ class DryFireTimerView extends WatchUi.View {
     // Update the view
     function onUpdate(dc as Dc) as Void {
         var statusPromptLable = View.findDrawableById("StatusPromptLabel") as WatchUi.Text;
-        statusPromptLable.setText(_DryFireTimerLogic.getStatusPromptText());
+        statusPromptLable.setText($.DryFireTimerLogic.getInstance().getStatusPromptText());
         var timerLabel = View.findDrawableById("CountdownLabel") as WatchUi.Text;
-        timerLabel.setText(_DryFireTimerLogic.getTimerText());
+        timerLabel.setText($.DryFireTimerLogic.getInstance().getTimerText());
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
@@ -43,11 +39,8 @@ class DryFireTimerView extends WatchUi.View {
 
 class DryFireTimerDelegate extends WatchUi.BehaviorDelegate {
 
-    private var _DryFireTimerLogic as DryFireTimerLogic;
-
-    function initialize(timerLogic as DryFireTimerLogic) {
+    function initialize() {
         BehaviorDelegate.initialize();
-        _DryFireTimerLogic = timerLogic;
     }
 
     protected function launchParTimePicker() as Void {
@@ -73,10 +66,10 @@ class DryFireTimerDelegate extends WatchUi.BehaviorDelegate {
         }            
         else {
             if (key == KEY_ENTER) {
-                _DryFireTimerLogic.handleStart();
+                $.DryFireTimerLogic.getInstance().handleStart();
                 return false;
             } else if (key == KEY_DOWN) {
-                _DryFireTimerLogic.handleReset();
+                $.DryFireTimerLogic.getInstance().handleReset();
                 return false;
             } else {
                 return true;

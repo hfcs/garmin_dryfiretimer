@@ -15,7 +15,7 @@ class ParTimePicker extends WatchUi.Picker {
         factories[SUB_SECOND_FACTORY_INDEX] = new $.ParTimePickerDigitFactory(0, 9, 1, {:subDecimal=>true});
 
         var defaults = new Array<Number>[factories.size()];
-        var defaultParTime = $.DryFireTimerLogic.getParTime();
+        var defaultParTime = $.DryFireTimerLogic.getInstance().getParTime();
         if (defaultParTime != null) {
             var parSecond = defaultParTime/1000;
             defaults[SECOND_FACTORY_INDEX] = (factories[SECOND_FACTORY_INDEX] as ParTimePickerDigitFactory).getIndex(parSecond);
@@ -46,7 +46,7 @@ class ParTimePickerDelegate extends WatchUi.BehaviorDelegate {
     }
 
     public function onAccept(values as Array<Number?>) as Boolean {
-        $.DryFireTimerLogic.setParTime(values[SECOND_FACTORY_INDEX]*1000 + values[SUB_SECOND_FACTORY_INDEX]*100);
+        $.DryFireTimerLogic.getInstance().setParTime(values[SECOND_FACTORY_INDEX]*1000 + values[SUB_SECOND_FACTORY_INDEX]*100);
         WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
         return true;
     }

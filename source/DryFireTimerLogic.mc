@@ -8,9 +8,17 @@ import Toybox.System;
 class DryFireTimerLogic {
     const TIMER_REFRESH = 67;
 
+    private static var _instance = null;
     private var _countDown as Lang.Number = 0;
     private var _countdownTimer = new Timer.Timer();
     private var _countdownRefreshTimer = new Timer.Timer();
+
+    static function getInstance() {
+        if (_instance == null) {
+            _instance = new DryFireTimerLogic();
+        }
+        return _instance;
+    }
 
     // State machine for timer,
 
