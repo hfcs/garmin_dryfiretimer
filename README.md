@@ -11,7 +11,7 @@ Even for dry fire, always make sure you remove ammo from your weapon and area ar
 4. Always be sure of your target and what is in front of it and behind it.
 
 ## Supoorted Devices
-[System 4 or above devices like Forerunner 55, Fenix 5 or above](manifest.xml), tested on simulator.
+[System 4 or above devices like Forerunner 55, Fenix 6 or above](manifest.xml), tested on simulator.
 
 ## Building & Running
 1. Check out this project
