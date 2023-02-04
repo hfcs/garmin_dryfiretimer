@@ -5,10 +5,12 @@ import Toybox.WatchUi;
 class DryFireTimerApp extends Application.AppBase {
 
     private var _myView as DryFireTimerView;
+    private var _myViewDelegate as DryFireTimerDelegate;
 
     function initialize() {
         AppBase.initialize();
         _myView = new DryFireTimerView();
+        _myViewDelegate = new DryFireTimerDelegate();
     }
 
     // onStart() is called on application start up
@@ -21,7 +23,7 @@ class DryFireTimerApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() as Array<Views or InputDelegates>? {
-        return [ _myView, new DryFireTimerDelegate() ] as Array<Views or InputDelegates>;
+        return [ _myView, _myViewDelegate ] as Array<Views or InputDelegates>;
     }
 
 }
